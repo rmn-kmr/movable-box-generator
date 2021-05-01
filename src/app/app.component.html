@@ -1,0 +1,30 @@
+<div class='base'>
+  <!-- fence  -->
+  <div id='fence' class="fence">
+    <!-- Box will spawn -->
+    <ng-container *ngFor="let box of boxList">
+      <!-- Box -->
+      <div [id]="box.id" class="box"
+        [ngStyle]="{'z-index': box.zIndex, 'background-color': (selectedBox && selectedBox.id) === box.id ? 'white' : 'gray' }"
+        (click)="boxClicked(box)"></div>
+    </ng-container>
+  </div>
+  <!-- Box controller -->
+  <div class="controller">
+    <!-- Add Box Button -->
+    <button (click)="addNewBox()">Add Box</button>
+    <p> {{ boxList.length > 0 ? 'Total Box: '+ boxList.length : ""}} </p>
+    <div class="control-block">
+      <div class="move-control">
+        <label> Enable Control </label>
+        <!-- Box interaxtion control -->
+        <label class="switch">
+          <input type="checkbox" [checked]="isControlEnable" (change)="controlSwitch($event)">
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <!-- interaction info -->
+      <span> *USE W, S, A, D KEYS TO MOVE AND DELETE TO REMOVE SELECTED BOX</span>
+    </div>
+  </div>
+</div>
